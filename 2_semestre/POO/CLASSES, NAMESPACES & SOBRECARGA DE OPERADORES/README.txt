@@ -1,0 +1,3 @@
+Nesta atividade, para aprofundar os conhecimentos de herança, sobrecarga, namespaces e relacionamente entre classes, foi implementado uma classe DataHorario, uma classe Pessoa, as classes Estudante e Professor, subclasses de Pessoa, e a classe Sessao, que possui objetos de outras classes.
+
+O objetivo era implementar tais classes de forma que fossem compatíveis com o arquivo main disponibilizado pelo professor 

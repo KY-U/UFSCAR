@@ -1,0 +1,3 @@
+Para aprofundar os conhecimentos de polimorfismo e classes abstratas, um header Categoria para auxiliar, foi imbuído aos alunos a tarefa de implementar uma classe Museu e as classes das obras expostas nele, pois os diferentes objetos derivados da classse abstrata ObraDeArte, podem ser da classe Pintura ou da Classe Escultura.
+
+As classes devem ser compatíveis com o arquivo main propiciado pelo professor

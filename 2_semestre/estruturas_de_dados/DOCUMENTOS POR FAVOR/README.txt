@@ -1,0 +1,5 @@
+Nesta atividade, foi necessário criar um jogo que utilizasse alguma TAD, uma estrutura de dados, como fila ou pilha. Foi escolhido a fila, e o jogo criado foi "Documentos Por Favor", em que o jogador é um fiscal de fronteira que deve verificar o rg de pessoas que pretendem entrar no país. O programa cria pessoas aleatórias diferentes e as coloca em uma fila cada vez que o programa é iniciado. O turno do fiscal de fronteira termina quando a fila fica vazia, após permitir ou negar a entrada de todos os indivíduos da fila
+
+Caso o executável não funcione, basta apertar "Run" no seguinte endereço para jogar: https://replit.com/@CaioUeda/documentosporfavor#rg.cpp
+
+Caso o vídeo não rode, segue o link para drive contendo o teaser trailer: https://drive.google.com/file/d/1dObNfiXTjYMe61jKBCaAxGNwnpBki-AP/view
