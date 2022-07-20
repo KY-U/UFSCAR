@@ -49,7 +49,6 @@ void *providesTobaccoPaper(void *var) {
     sem_post(&tobacco);
     sem_post(&paper);
   }
-  pthread_exit(NULL);
 }
 
 // Agente B
@@ -60,8 +59,7 @@ void *providesPaperMatches(void *var) {
     sleep(rand() % 3);
     sem_post(&paper);
     sem_post(&matches);
-  }
-  pthread_exit(NULL);
+  } 
 }
 
 // Agente C
@@ -73,7 +71,6 @@ void *providesTobaccoMatches(void *var) {
     sem_post(&tobacco);
     sem_post(&matches);
   }
-  pthread_exit(NULL);
 }
 
 /*
@@ -94,7 +91,6 @@ void *pusherA(void *var){
     } else isTobacco = 1;
     pthread_mutex_unlock(&mutex);
   }
-  pthread_exit(NULL);
 }
 
 // Quando há papel na mesa
@@ -115,7 +111,6 @@ void *pusherB(void *var){
     else isPaper = 1;
     pthread_mutex_unlock(&mutex);
   }
-  pthread_exit(NULL);
 }
 
 // Quando há fósforos na mesa
@@ -135,7 +130,6 @@ void *pusherC(void *var){
     else isMatches = 1;
     pthread_mutex_unlock(&mutex);
   }
-  pthread_exit(NULL);
 }
 
 /*
@@ -174,8 +168,7 @@ void *smokerPaper(void *var) {
     produceCigarette();
     smoking();
     sem_post(&agentSem);
-  }
-  pthread_exit(NULL);
+  } 
 }
 
 //Fumante com fósforos
