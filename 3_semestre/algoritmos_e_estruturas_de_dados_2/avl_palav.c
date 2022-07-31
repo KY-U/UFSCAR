@@ -80,7 +80,7 @@ noh_t *rotEsq(noh_t *x){
 //insere o no
 noh_t *insere(noh_t *r, char *chave, int  ponto){
 	//caso a árvore esteja vazia
-	if(r ==NULL) 
+	if(r == NULL) 
 		return novoNo(chave, ponto);
 	//caso não esteja vazia, descer a esquerda ou direita
 	if(strcmp(chave, r->chave) < 0)

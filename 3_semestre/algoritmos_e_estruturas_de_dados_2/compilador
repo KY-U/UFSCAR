@@ -1,1 +1,1 @@
-gcc avl_palav -Wall -pedantic -O2 -Wno-unused-result 
+gcc funciona.c -Wall -pedantic -O2 -Wno-unused-result 
