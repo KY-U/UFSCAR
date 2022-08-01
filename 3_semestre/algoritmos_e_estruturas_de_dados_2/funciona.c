@@ -54,6 +54,7 @@ int main(int argc, char *argv[]){
                 //printf("\nsubtraiu 10 pela palavra %s, total %d", palavra, resultados[i]);
             }
 		}
+		//mudando a palavra para que o novo while() seja capaz de rodar
         palavra[0] = '~';
 	}
 
