@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX 40
+#define MAX 35
 
 //nó da árvore AVL
 struct no{
@@ -61,11 +61,11 @@ noh_t *novoNo(char *chave, int ponto){
 //rotaciona a direita
 noh_t *rotDir(noh_t *y){
 	noh_t *x = y->esq;
-	noh_t *h2 = x->dir
+	noh_t *h2 = x->dir;
 	x->dir = y;
 	y->esq = h2; 
-	//y->esq = x->dir;
-	//x->dir = y;
+	//y->esq = x->dir;  	ao invés de escrever as 3 linhas superiores, se eu utilizar 
+	//x->dir = y;			apenas essas 2 linhas, fica mais lento, não sei porque.
 	y->altura = altura(y);
 	x->altura = altura(x);
 	return x;
@@ -107,12 +107,12 @@ noh_t *insere(noh_t *r, char *chave, int  ponto){
 	if(bal > 1 && (strcmp(chave, (r->dir)->chave) > 0))
 		return rotEsq(r);
 	//esq dir
-	if(bal < -1 && (strcmp(chave, r->esq->chave) > 0)){
+	if(bal < -1 && (strcmp(chave, (r->esq)->chave) > 0)){
 		r->esq = rotEsq(r->esq);
 		return rotDir(r);
 	}
 	//dir esq
-	if(bal > 1 && (strcmp(chave, (r->esq)->chave) < 0)){
+	if(bal > 1 && (strcmp(chave, (r->dir)->chave) < 0)){
 		r->dir = rotDir(r->dir);
 		return rotEsq(r);
 	}
@@ -126,7 +126,7 @@ noh_t *minNo(noh_t *no){
 		p = p->esq;
 	return p;
 }
-//deletando um nó
+//função que deleta um nó(que eu nem usei pq criei uma função pra deletar a arv inteira de uma vez)
 noh_t *removeNoh(noh_t *r, char *chave){
 	//caso a árvore esteja vazia
 	if(r == NULL)
@@ -147,11 +147,6 @@ noh_t *removeNoh(noh_t *r, char *chave){
 			}
 			else{	//caso tenha um filho
 				//copia os conteúdos do filho não nulo
-				/*r->altura = temp->altura;
-				r->ponto = temp->ponto;
-				r->esq = temp->esq;
-				r->dir = temp->dir;
-				r->chave = temp->chave;*/
 				*r = *temp;
 				free(temp);
 			}
@@ -162,13 +157,6 @@ noh_t *removeNoh(noh_t *r, char *chave){
 			//copia os dados do sucessor inOrder para o nó atual
 			*r = *temp;
 			free(temp);
-			/*r->altura = temp->altura;
-			r->ponto = temp->ponto;
-			r->esq = temp->esq;
-			r->dir = temp->dir;
-			r->chave = temp->chave;
-			//deleta o sucessor inOrder
-			r->dir = removeNoh(r->dir, temp->chave);*/
 		}	
 	}
 	//caso a árvore apenas tenha apenas um nó
@@ -189,7 +177,7 @@ noh_t *removeNoh(noh_t *r, char *chave){
 		return rotDir(r);
 	}
 	//dir esq
-	if(bal > 1 && (strcmp(chave, (r->esq)->chave) < 0)){
+	if(bal > 1 && (strcmp(chave, (r->dir)->chave) < 0)){
 		r->dir = rotDir(r->dir);
 		return rotEsq(r);
 	}
@@ -205,10 +193,12 @@ noh_t *busca(noh_t *r, char *chave){
 	return busca(r->dir, chave);
 }
 
+//desaloca tudo
 void desaloca_tudo(noh_t *r){
 	if(r != NULL){
 		desaloca_tudo(r->esq);
 		desaloca_tudo(r->dir);
+		free(r->chave);
 		free(r);
 	}
 }
@@ -235,37 +225,23 @@ int main(int argc, char *argv[]){
 	//lendo as palavras e suas pontuações
 	for(int i = 0; i < M; i++){
 		scanf("%s%d", chaves[i], &pontos);
-		insere(arv, chaves[i], pontos);
-
-		noh_t *p = busca(arv, chaves[i]);
-		//printf("\n %s vale %d pontos", p->chave,p->ponto);
+		arv = insere(arv, chaves[i], pontos);
 	}
 
 	//lendo os textos e calculando as pontuações totais
 	for(int i = 0; i < N; i++){
+		noh_t *achou = NULL;
 		while(palavra[0] != '.'){
 			scanf("%s", palavra);
 			//verifica se a palavra pontua, se não, subtrai 10 pontos
-			noh_t *achou = busca(arv, palavra);
-			if(achou == NULL) printf("nao achou a palavra %s", palavra);
+			achou = busca(arv, palavra);
 			if(achou != NULL){
 				resultados[i] += achou->ponto;
-				printf("\nsomou a palavra %s de %d pontos, total %d pontos", palavra, achou->ponto, resultados[i]);
 			}
-            /*int achou = 0;
-            for(int j = 0; j < M; j++){
-                if(strcmp(palavra, chaves[j]) == 0){
-                    achou = 1;
-                    resultados[i] += pontos[j];
-                    //printf("\nsomou a palavra %s de %d pontos, total %d pontos", palavra, pontos[j], resultados[i]);
-                }
-            }*/
-
             //depois de ter buscado pela palavra, se não achou, subtrai 10
             else{
 				if(palavra[0] != '.'){
                 	resultados[i] -= 10;
-                	printf("\nsubtraiu 10 pela palavra %s, total %d", palavra, resultados[i]);
 				}
 			}
 		}
@@ -278,5 +254,9 @@ int main(int argc, char *argv[]){
 	for(int i = 0; i < N; i++){
 		printf("%d\n", resultados[i]);
 	}
+
+	//desalocando toda a memória alocada
+	desaloca_tudo(arv);
+
 	return 0;
 }

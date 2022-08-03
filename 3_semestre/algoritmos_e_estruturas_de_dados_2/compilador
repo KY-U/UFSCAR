@@ -1,1 +1,1 @@
-gcc funciona.c -Wall -pedantic -O2 -Wno-unused-result 
+gcc usando_avl.c -Wall -pedantic -O2 -Wno-unused-result -o exe && ./exe
