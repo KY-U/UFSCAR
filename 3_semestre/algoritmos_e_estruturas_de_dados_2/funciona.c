@@ -16,7 +16,7 @@ int main(int argc, char *argv[]){
 	char palavra[MAX];
 	//lendo o número de palavras e participantes
 	scanf("%d%d", &M, &N);
-	//as hashs das palavras serão gravadas em um vetor para serem consultadas
+	//as palavras serão gravadas em um vetor para serem consultadas
 	//na hora de removê-las da árvore
 	char **chaves = (char **) malloc(M * sizeof(char *));
     for(int i = 0; i < M; i++)
@@ -54,7 +54,8 @@ int main(int argc, char *argv[]){
                 //printf("\nsubtraiu 10 pela palavra %s, total %d", palavra, resultados[i]);
             }
 		}
-		//mudando a palavra para que o novo while() seja capaz de rodar
+		//ao final do while, o valor de palavra é '.', logo, temos que
+		//mudar a palavra para que o novo while() seja capaz de rodar
         palavra[0] = '~';
 	}
 

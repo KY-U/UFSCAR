@@ -9,7 +9,7 @@
 
 //nó da árvore AVL
 struct no{
-	char chave[MAX];
+	char *chave;
 	struct no *dir;
 	struct no *esq;
 	int altura;
@@ -28,6 +28,7 @@ noh_t *insere(noh_t *, char*, int);
 noh_t *minNo(noh_t*);
 noh_t *removeNoh(noh_t *, char *);
 noh_t *busca(noh_t *, char *);
+void desaloca_tudo(noh_t *);
 
 //Implementações da árvore AVL
 
@@ -49,7 +50,7 @@ int getBal(noh_t *no){
 //retorna novo nó
 noh_t *novoNo(char *chave, int ponto){
 	noh_t *novo = (noh_t *) malloc(sizeof(noh_t));
-	strcpy(novo->chave, chave);
+	novo->chave = chave;
 	novo->esq = NULL;
 	novo->dir = NULL;
 	novo->altura = 0;
@@ -60,8 +61,11 @@ noh_t *novoNo(char *chave, int ponto){
 //rotaciona a direita
 noh_t *rotDir(noh_t *y){
 	noh_t *x = y->esq;
-	y->esq = x->dir;
+	noh_t *h2 = x->dir
 	x->dir = y;
+	y->esq = h2; 
+	//y->esq = x->dir;
+	//x->dir = y;
 	y->altura = altura(y);
 	x->altura = altura(x);
 	return x;
@@ -70,8 +74,11 @@ noh_t *rotDir(noh_t *y){
 //rotaciona a esquerda
 noh_t *rotEsq(noh_t *x){
 	noh_t *y = x->dir;
-	x->dir = y->esq;
+	noh_t *h2 = y->esq;
 	y->esq = x;
+	x->dir = h2;
+	//x->dir = y->esq;
+	//y->esq = x;
 	x->altura = altura(x);
 	y->altura = altura(y);
 	return y;
@@ -135,17 +142,17 @@ noh_t *removeNoh(noh_t *r, char *chave){
 			noh_t *temp = r->esq ? r->esq : r->dir;
 			//caso não tenha nenhum filho
 			if(temp == NULL){
-				temp = r;
+				*temp = *r;
 				r = NULL;
 			}
 			else{	//caso tenha um filho
 				//copia os conteúdos do filho não nulo
-				r->altura = temp->altura;
+				/*r->altura = temp->altura;
 				r->ponto = temp->ponto;
 				r->esq = temp->esq;
 				r->dir = temp->dir;
-				strcpy(r->chave, temp->chave);
-				
+				r->chave = temp->chave;*/
+				*r = *temp;
 				free(temp);
 			}
 		}
@@ -153,13 +160,15 @@ noh_t *removeNoh(noh_t *r, char *chave){
 			//caso tenha 2 filhos, pega o menor nó da sub-árvore direita(sucessor inOrder)
 			noh_t *temp = minNo(r->dir);
 			//copia os dados do sucessor inOrder para o nó atual
-			r->altura = temp->altura;
+			*r = *temp;
+			free(temp);
+			/*r->altura = temp->altura;
 			r->ponto = temp->ponto;
 			r->esq = temp->esq;
 			r->dir = temp->dir;
-			strcpy(r->chave, temp->chave);
+			r->chave = temp->chave;
 			//deleta o sucessor inOrder
-			r->dir = removeNoh(r->dir, temp->chave);
+			r->dir = removeNoh(r->dir, temp->chave);*/
 		}	
 	}
 	//caso a árvore apenas tenha apenas um nó
@@ -195,58 +204,79 @@ noh_t *busca(noh_t *r, char *chave){
 		return busca(r->esq, chave);
 	return busca(r->dir, chave);
 }
+
+void desaloca_tudo(noh_t *r){
+	if(r != NULL){
+		desaloca_tudo(r->esq);
+		desaloca_tudo(r->dir);
+		free(r);
+	}
+}
 //função main
 int main(int argc, char *argv[]){
-	
-	//as palavras serão gravadas em um vetor para serem consultadas
-	//na hora de removê-las da árvore para liberar a memória alocada pela AVL
-	char **lista_de_palavras = NULL;
-	//M, N, pontuação, palavras escolhidas, resultados finais e árvore AVL;
-	int num_pal, num_part, pont;		
+
+	//M, N, pontuação, hashes palavras escolhidas, resultados finais e árvore AVL;
+	int M, N;		
 	char palavra[MAX];
 	noh_t *arv = NULL;
 	//lendo o número de palavras e participantes
-	scanf("%d %d", &num_pal, &num_part);
-
+	scanf("%d%d", &M, &N);
+	//as palavras serão gravadas em um vetor para serem consultadas
+	//na hora de removê-las da árvore
+	char **chaves = (char **) malloc(M * sizeof(char *));
+    for(int i = 0; i < M; i++)
+        chaves[i] = (char *) malloc(MAX * sizeof(char));
+    //variável para guardar os pontos de cada palavra
+    int pontos;
 	//vetor para guardar os resultados;
-	int resultados[num_part];
-	for(int i = 0; i < num_part; i++)
-	//alocando espaço pro vetor de palavras
-	lista_de_palavras = (char **) malloc(num_pal * sizeof(char *));
-	for(int i = 0; i < num_pal; i++){
-		lista_de_palavras[i] = (char *) malloc(MAX * sizeof(char));
-	}
+	int resultados[N];
+	for(int i = 0; i < N; i++)
+		resultados[i] = 0;
 	//lendo as palavras e suas pontuações
-	for(int i = 0; i < num_pal; i++){
-		scanf("%s %d", palavra, &pont);
-		//guardar a palavra e pontuação na AVL
-		insere(arv, palavra, pont);
-		//guardando a palavra no vetor de palavras
-		strcpy(lista_de_palavras[i], palavra);
+	for(int i = 0; i < M; i++){
+		scanf("%s%d", chaves[i], &pontos);
+		insere(arv, chaves[i], pontos);
+
+		noh_t *p = busca(arv, chaves[i]);
+		//printf("\n %s vale %d pontos", p->chave,p->ponto);
 	}
 
 	//lendo os textos e calculando as pontuações totais
-	for(int i = 0; i< num_part; i++){
-		noh_t *p;
-		while(palavra[0] != 'c'){
+	for(int i = 0; i < N; i++){
+		while(palavra[0] != '.'){
 			scanf("%s", palavra);
-			//verifica na arvore AVL e adiciona a pontuacao
-			if((p = busca(arv, palavra)) != NULL){
-				resultados[i] += p->ponto;
+			//verifica se a palavra pontua, se não, subtrai 10 pontos
+			noh_t *achou = busca(arv, palavra);
+			if(achou == NULL) printf("nao achou a palavra %s", palavra);
+			if(achou != NULL){
+				resultados[i] += achou->ponto;
+				printf("\nsomou a palavra %s de %d pontos, total %d pontos", palavra, achou->ponto, resultados[i]);
+			}
+            /*int achou = 0;
+            for(int j = 0; j < M; j++){
+                if(strcmp(palavra, chaves[j]) == 0){
+                    achou = 1;
+                    resultados[i] += pontos[j];
+                    //printf("\nsomou a palavra %s de %d pontos, total %d pontos", palavra, pontos[j], resultados[i]);
+                }
+            }*/
+
+            //depois de ter buscado pela palavra, se não achou, subtrai 10
+            else{
+				if(palavra[0] != '.'){
+                	resultados[i] -= 10;
+                	printf("\nsubtraiu 10 pela palavra %s, total %d", palavra, resultados[i]);
+				}
 			}
 		}
+		//ao final do while, o valor de palavra é '.', logo, temos que
+		//mudar a palavra para que o novo while() seja capaz de rodar
+        palavra[0] = '~';
 	}
 
 	//mostrando os resultados
-	for(int i = 0; i < num_part; i++){
+	for(int i = 0; i < N; i++){
 		printf("%d\n", resultados[i]);
 	}
-
-	//desalocando as memórias usadas
-	for(int i = 0; i < num_pal; i++){
-		removeNoh(arv, lista_de_palavras[i]);
-		free(lista_de_palavras[i]);
-	}
-
 	return 0;
 }
