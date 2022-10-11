@@ -5,7 +5,7 @@ import os
 os.system("[ -f pg5710.txt ] || wget https://www.gutenberg.org/cache/epub/5710/pg5710.txt")
 os.system("ls -l pg5710.txt")
 
-#Abrindo o arquivo e procurando a linha contendo aa palavra
+#Abrindo o arquivo e procurando a linha contendo a palavra
 try:
   arquivo_texto = open("pg5710.txt")
 except IOError as excecao:
