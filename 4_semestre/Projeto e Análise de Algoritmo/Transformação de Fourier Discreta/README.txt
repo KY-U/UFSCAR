@@ -5,4 +5,4 @@ Explique os códigos e seu funcionamento. Plote gráficos dos sinais aleatórios
 
 
 link do google collab: https://colab.research.google.com/drive/1dsTHDjGr3ncwwUSlLo6VOuw1ttGnAnGn?usp=sharing
-Realizado em dupla com Vinícius Romualdo: https://github.com/ViniR07
+Realizado em dupla com Vinícius Romualdo: https://github.com/vinimrs
