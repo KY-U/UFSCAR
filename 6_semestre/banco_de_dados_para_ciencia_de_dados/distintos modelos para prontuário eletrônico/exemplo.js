@@ -1,3 +1,6 @@
+//Trecho de inserção em um bd não relacional 
+//com js em mongoDB e json baseado na pessoa
+
 db.pessoa.insert({
     cpf: '12345678911',
     nome: 'Joao Dois',
