@@ -12,6 +12,7 @@ class VerificadorEleitoralTest {
 
     @Test
     void testeIdadeNegativa() {
+        // 1 -> 3
         CartorioEleitoral cartorio_mock = mock(CartorioEleitoral.class);
         VerificadorEleitoral verificador = new VerificadorEleitoral(cartorio_mock);
         assertThrows(Exception.class, () -> {
@@ -20,6 +21,7 @@ class VerificadorEleitoralTest {
     }
     @Test
     void testeIdadeExcedente() {
+        // 1 -> 2 -> 3
         CartorioEleitoral cartorio_mock = mock(CartorioEleitoral.class);
         VerificadorEleitoral verificador = new VerificadorEleitoral(cartorio_mock);
         assertThrows(Exception.class, () -> {
@@ -28,6 +30,7 @@ class VerificadorEleitoralTest {
     }
     @Test
     void testeCPFNull() {
+        // 1 -> 2 -> 4 -> 6
         CartorioEleitoral cartorio_mock = mock(CartorioEleitoral.class);
         VerificadorEleitoral verificador = new VerificadorEleitoral(cartorio_mock);
         assertThrows(Exception.class, () -> {
@@ -36,6 +39,7 @@ class VerificadorEleitoralTest {
     }
     @Test
     void testeCPFTamanhoInvalido() {
+        // 1 -> 2 -> 4 -> 5 -> 6
         CartorioEleitoral cartorio_mock = mock(CartorioEleitoral.class);
         VerificadorEleitoral verificador = new VerificadorEleitoral(cartorio_mock);
         assertThrows(Exception.class, () -> {
@@ -44,6 +48,7 @@ class VerificadorEleitoralTest {
     }
     @Test
     void testeMenorDe16() throws Exception {
+        // 1 -> 2 -> 4 -> 5 -> 7 -> 8
         CartorioEleitoral cartorio_mock = mock(CartorioEleitoral.class);
         VerificadorEleitoral verificador = new VerificadorEleitoral(cartorio_mock);
         String res = verificador.consultarSituacao(10, "12345678910");
@@ -51,6 +56,7 @@ class VerificadorEleitoralTest {
     }
     @Test
     void testeCPFInexistente() throws Exception{
+        // 1 -> 2 -> 4 -> 5 -> 7 -> 9 -> 10 -> 11
         CartorioEleitoral cartorio_mock = mock(CartorioEleitoral.class);
         VerificadorEleitoral verificador = new VerificadorEleitoral(cartorio_mock);
         when(cartorio_mock.verificar("12345678910")).thenReturn("nao existe");
@@ -60,6 +66,7 @@ class VerificadorEleitoralTest {
 
     @Test
     void testeCPFPendente() throws Exception{
+        // 1 -> 2 -> 4 -> 5 -> 7 -> 9 -> 10 -> 12 -> 13
         CartorioEleitoral cartorio_mock = mock(CartorioEleitoral.class);
         VerificadorEleitoral verificador = new VerificadorEleitoral(cartorio_mock);
         when(cartorio_mock.verificar("12345678910")).thenReturn("pendencia");
@@ -69,6 +76,7 @@ class VerificadorEleitoralTest {
 
     @Test
     void testeCPFOkVotoObrigatorio() throws Exception{
+        // 1 -> 2 -> 4 -> 5 -> 7 -> 9 -> 10 -> 12 -> 14 -> 15 -> 16 -> 17 -> 19
         CartorioEleitoral cartorio_mock = mock(CartorioEleitoral.class);
         VerificadorEleitoral verificador = new VerificadorEleitoral(cartorio_mock);
         when(cartorio_mock.verificar("12345678910")).thenReturn("OK");
@@ -76,9 +84,9 @@ class VerificadorEleitoralTest {
         assertEquals("voto obrigatorio", res);
     }
 
-    //NAO TA FEITO, falta o if idade maior engual 16 menor 18
     @Test
-    void testeCPFOkVotoFacultativoMenor70() throws Exception{
+    void testeCPFOkVotoFacultativo16() throws Exception{
+        // 1 -> 2 -> 4 -> 5 -> 7 -> 9 -> 10 -> 12 -> 14 -> 15 -> 16 -> 18 -> 19
         CartorioEleitoral cartorio_mock = mock(CartorioEleitoral.class);
         VerificadorEleitoral verificador = new VerificadorEleitoral(cartorio_mock);
         when(cartorio_mock.verificar("12345678910")).thenReturn("OK");
@@ -88,6 +96,7 @@ class VerificadorEleitoralTest {
 
     @Test
     void testeCPFOkVotoFacultativoMaior70() throws Exception{
+        // 1 -> 2 -> 4 -> 5 -> 7 -> 9 -> 10 -> 12 -> 14 -> 15 -> 16 -> 17 -> 18 -> 19
         CartorioEleitoral cartorio_mock = mock(CartorioEleitoral.class);
         VerificadorEleitoral verificador = new VerificadorEleitoral(cartorio_mock);
         when(cartorio_mock.verificar("12345678910")).thenReturn("OK");
@@ -97,6 +106,7 @@ class VerificadorEleitoralTest {
 
     @Test
     void testeErroDesconhecido() throws Exception{
+        // 1 -> 2 -> 4 -> 5 -> 7 -> 9 -> 10 -> 12 -> 14 -> 20
         CartorioEleitoral cartorio_mock = mock(CartorioEleitoral.class);
         VerificadorEleitoral verificador = new VerificadorEleitoral(cartorio_mock);
         when(cartorio_mock.verificar("12345678910")).thenReturn("banana");
