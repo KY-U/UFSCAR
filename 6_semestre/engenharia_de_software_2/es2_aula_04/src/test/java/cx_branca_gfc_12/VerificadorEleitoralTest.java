@@ -71,8 +71,8 @@ class VerificadorEleitoralTest {
     void testeCPFOkVotoObrigatorio() throws Exception{
         CartorioEleitoral cartorio_mock = mock(CartorioEleitoral.class);
         VerificadorEleitoral verificador = new VerificadorEleitoral(cartorio_mock);
-        when(cartorio_mock.verificar("12345678910")).thenReturn("Ok");
-        String res = verificador.consultarSituacao(16, "12345678910");
+        when(cartorio_mock.verificar("12345678910")).thenReturn("OK");
+        String res = verificador.consultarSituacao(18, "12345678910");
         assertEquals("voto obrigatorio", res);
     }
 
@@ -81,9 +81,9 @@ class VerificadorEleitoralTest {
     void testeCPFOkVotoFacultativo() throws Exception{
         CartorioEleitoral cartorio_mock = mock(CartorioEleitoral.class);
         VerificadorEleitoral verificador = new VerificadorEleitoral(cartorio_mock);
-        when(cartorio_mock.verificar("12345678910")).thenReturn("Ok");
+        when(cartorio_mock.verificar("12345678910")).thenReturn("OK");
         String res = verificador.consultarSituacao(16, "12345678910");
-        assertEquals("voto obrigatorio", res);
+        assertEquals("voto facultativo", res);
     }
     @Test
     void testeErroDesconhecido() throws Exception{
