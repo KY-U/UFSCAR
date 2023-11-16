@@ -78,13 +78,23 @@ class VerificadorEleitoralTest {
 
     //NAO TA FEITO, falta o if idade maior engual 16 menor 18
     @Test
-    void testeCPFOkVotoFacultativo() throws Exception{
+    void testeCPFOkVotoFacultativoMenor70() throws Exception{
         CartorioEleitoral cartorio_mock = mock(CartorioEleitoral.class);
         VerificadorEleitoral verificador = new VerificadorEleitoral(cartorio_mock);
         when(cartorio_mock.verificar("12345678910")).thenReturn("OK");
         String res = verificador.consultarSituacao(16, "12345678910");
         assertEquals("voto facultativo", res);
     }
+
+    @Test
+    void testeCPFOkVotoFacultativoMaior70() throws Exception{
+        CartorioEleitoral cartorio_mock = mock(CartorioEleitoral.class);
+        VerificadorEleitoral verificador = new VerificadorEleitoral(cartorio_mock);
+        when(cartorio_mock.verificar("12345678910")).thenReturn("OK");
+        String res = verificador.consultarSituacao(71, "12345678910");
+        assertEquals("voto facultativo", res);
+    }
+
     @Test
     void testeErroDesconhecido() throws Exception{
         CartorioEleitoral cartorio_mock = mock(CartorioEleitoral.class);
