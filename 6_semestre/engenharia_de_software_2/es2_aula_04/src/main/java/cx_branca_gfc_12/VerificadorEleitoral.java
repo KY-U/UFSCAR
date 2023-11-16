@@ -21,13 +21,13 @@ public class VerificadorEleitoral {
             /*11*/return "faca um titulo";
             /*12*/else if(status.equals("pendencia"))
                 /*13*/return "regularize seu titulo";
-            /*14*/else if(status.equals("OK")) {
+                /*14*/else if(status.equals("OK")) {
                 /*15*/String ret = "voto obrigatorio";
                 if(/*16*/idade <= 17 || /*17*/idade > 70)
                     /*18*/ret = "voto facultativo";
 
-            /*19*/return ret;
-        }
+                /*19*/return ret;
+                }
         /*20*/return "erro desconhecido";
     }
 }
