@@ -1,0 +1,12 @@
+{
+    "Id": "<ObjectId1>",
+    "Type": "tv-series",
+    "IsAdult": "0",
+    "PrimaryTtitle": "Sharknado",
+    "EndYear": "2012",
+    "OriginalTitle": "Sharknado",
+    "StartYear": "2022",
+    "runtimeMinutes": "666",
+    "genres": ["terror", "ação"],
+    "Rating": {"NumVotes": "420", "AverageRating": "10"}
+}
