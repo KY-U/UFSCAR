@@ -1,12 +1,12 @@
 {
-    "Id": "<ObjectId1>",
-    "Type": "tv-series",
+    "Id": "<ObjectBasicId1>",
+    "Type": "tvSeries",
     "IsAdult": "0",
-    "PrimaryTtitle": "Sharknado",
-    "EndYear": "2012",
-    "OriginalTitle": "Sharknado",
-    "StartYear": "2022",
-    "runtimeMinutes": "666",
-    "genres": ["terror", "ação"],
-    "Rating": {"NumVotes": "420", "AverageRating": "10"}
+    "PrimaryTtitle": "Breaking Bad",
+    "StartYear": "2008",
+    "EndYear": "2013",
+    "OriginalTitle": "Breaking Bad",    
+    "runtimeMinutes": "49",
+    "genres": ["Crime","Drama","Thriller"],
+    "Rating": {"NumVotes": "1486688", "AverageRating": "9.5"}
 }

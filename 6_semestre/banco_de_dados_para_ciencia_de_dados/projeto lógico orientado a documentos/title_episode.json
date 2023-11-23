@@ -1,6 +1,6 @@
 {
-    "id": "<ObjectId4",
-    "TitleBasicId": "<ObjectId1>",
-    "EpisodeNumber": "22",
+    "id": "<ObjectEpisodeId1>",
+    "TitleBasicId": "<ObjectBasicId1>",
+    "EpisodeNumber": "10",
     "SeasonNumber": "2"
 }
