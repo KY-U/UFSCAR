@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Estudo CSS</title>
+    <link rel="stylesheet" type="text/css" href="estudo-css.css">
+    <meta http-equiv="refresh" content="30">
+    <style>
+        p {
+            color: white;
+            text-align: center;
+            background-color: black
+        }
+    </style>
+</head>
+<body>
+    Inline (evitar):
+    <p style="text-align: center; color: white; background-color: red">Inline é difinido diretamente no elemento HTML
+    </p><br>
+
+    Interno (evitar):
+    <p>Interno é definido na folha de estilho no cabeçalho da página HTML</p><br>
+
+    Externo:
+    <!-- caso não tivesse definido p já, seria apenas
+    <p>lorem ip sum
+
+    </p> -->
+    <p class="class_p_align">Definido em um arquivo .css externo e ligado por meio da tag &lt;link&gt;
+    </p><br>
+
+    Seletores:<br>
+    É possível estilizar com seletores de tag, id, class e universal.<br>
+
+    
+
+    <p id="id_p">Esse é um parágrafo com Seletor de id, eles são uma forma de identificar um elemento,por isso  devem ser únicos para cada elemento.   
+    </p><br>
+
+    <p class="class_p_align">Esse é um parágrafo com Seletor de classe.
+    </p><br>
+
+    Por meio das classe, é possivel atribuir mais de uma formatação a um elemento:<br>
+
+    <p class="p_purple p_right">Parágrafo de classe roxa e a direita
+    </p><br>
+    
+    Agrupamento:<br>
+    É possível definir um mesmo estilo para diferentes seletores<br>
+
+    <h3>Tanto h3 quanto</h3><i> itálico estão laranjas</i><br>
+
+    Pseudo-Elementos:<br>
+    Permitem que apenas <b>partes</b> do conteúdo sejam estilizadas<br>
+
+    <h2>Este é um exemplo de texto que modificará somente a primeira linha. lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</h2>
+
+    Pseudo-Classes:<br>
+    Palavra chave que especifica um estado específico de um elemento<br>
+
+    <a href="https://i.pinimg.com/originals/c5/09/9d/c5099df561f17e199dc744b124c07a5c.gif" target="_blank" title="Top Gun">Clique aqui!</a><br>
+
+    <a href="#h6">Âncora para h6</a>
+</body>    
+</html>
+

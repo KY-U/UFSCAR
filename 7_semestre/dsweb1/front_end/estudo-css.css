@@ -1,0 +1,59 @@
+/*seletor universal*/
+* {
+    background-color: rgb(241, 233, 233);
+}
+
+/*seletor de tag
+p {
+    color: white;
+    text-align: center;
+    background-color: red;
+*/
+
+/*seletor de id*/
+#id_p {
+    text-align: left;
+    background-color: blue;
+}
+
+/*seletor de classe*/
+.class_p_align {
+    text-align: center;
+    background-color: green;
+}
+
+.p_purple {
+    background-color: purple
+}
+
+.p_right {
+    text-align: right;
+}
+
+/*agrupamento de seletores*/
+h3, i {
+    color: orange;
+}
+
+/*pseudo-elemento*/
+h2::first-line {
+    color:aquamarine;
+    text-transform: uppercase;
+}
+
+/*pseudo-classes*/
+a:link {
+    color: #FF0000;
+}
+  
+a:visited {
+    color: #00FF00;
+}
+
+a:hover {
+    color: #FF00FF;
+}
+
+a:active {
+    color: #0000FF;
+}

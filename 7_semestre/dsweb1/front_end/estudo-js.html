@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Estudo JS</title>
+    <meta http-equiv="refresh" content="30">
+    <script src="estudos-js.js" defer></script>
+    <script>
+        function alerta() {
+            alert("INTERNO");
+        } 
+        document.addEventListener("DOMContentLoaded", function() {
+            var bnt = document.getElementById("interno")
+            bnt.addEventListener("click", alerta);
+        });
+    </script>
+    
+</head>
+<body>
+    Inline (evitar):<br>
+    Definido diretamente no elemento HTML<br>
+    <button onclick="alert('INLINE');">Botão Inline!</button><br><br>
+
+    Interno (evitar):
+    <ul>
+        <li>Definido diretamente no elemento HTML usando a tag &lt;script&gt;</li>
+        <li>Pode ser incluído tanto dentro da tag &lt;head&gt; quanto na tag &lt;body&gt;</li>
+    </ul>
+    <button id="interno">Botão Interno</button><br><br>
+
+    Externo:
+    <ul>
+        <li>Definido em um arquivo externo js</li>
+        <li>Ligado pela tag &lt;script&gt;</li>
+    </ul>
+    <button id="externo">Botão Externo</button><br><br>
+
+    Console:<br>
+    <button id="console">Console</button><br><br>
+
+    Variáveis:<br>
+    Observe o console de desenvolvedor para ver o resultado<br><br>
+
+    Definição de variável com "let" possui escopo de bloco<br><br>
+
+    O escopo de uma variável definida com "var" é global, mesmo que tenha sido declarada dentro de um bloco<br><br>
+
+    É possível declarar uma variável sem utilizar const, let ou var, o tipo void, porém, o javascript não é capaz de dizer onde foi declarada a primeira instância da variável<br><br>
+
+    É possível criar um objeto <b>simples</b>, sem a necessidade de uma classe. Também é possível criar objetos com a classe <b>Object</b>, com uma <b>função</b>, e com <b>classes</b><br><br>
+
+    Retornando elementos com métodos get:
+    <ul>
+        <li>getElementById</li>
+        <li>getElementsByClassName</li>
+        <li>getElementsByTagName</li>
+    </ul>
+    <p id="idA">idA-1</p>
+    <p id="idA">idA-2</p>
+    <p class="classA">classA-1</p>
+    <p class="classA">classA-2</p>
+    <p class="classA">classA-3</p>
+
+    Manipulação de elementos pelo inner html:<br>
+    <div id="nome" class="class_nome">Ulisflávio</div><br>
+    <p>Antes de alterar o valor do inner html da div anterior, seu valor era <b>Ulisflávio</b></p>
+</body>
+</html>
+
