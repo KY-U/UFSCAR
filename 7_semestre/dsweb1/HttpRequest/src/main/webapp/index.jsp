@@ -2,7 +2,7 @@
 <body>
     <a href="InterpretarRequestServlet?a=123&b=123">Testa</a><br/>
     <p></p>
-    <form name="teste" action="InterpretarRequestServlet">
+    <form name="teste" action="InterpretarRequestServlet" method="POST">
         <fieldset>
         <legend>Formulário de Envio</legend>
         Nome: <input type="text" name="nome" /> <br/>
@@ -10,9 +10,10 @@
         Confirmação de e-mail: <input type="text" name="email" /> <br/>
         Senha: <input type="password" name="senha" /><br/>
         Gênero: <input type="radio" name="genero" value="Masculino" /> Masculino
-        <input type="radio" name="genero" value="Feminino" /> Feminino <br/>
+                <input type="radio" name="genero" value="Feminino" /> Feminino <br/>
         Receber notícias: <input type="checkbox" name="receber" value="ok" /><br/>
         <input type="submit" name="enviar" value="Enviar" />
+        <input type="hidden" name="teste" value="testando" />
         </fieldset>
 </body>
 </html>

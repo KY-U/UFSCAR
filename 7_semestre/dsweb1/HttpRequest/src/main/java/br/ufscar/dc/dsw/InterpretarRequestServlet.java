@@ -2,6 +2,9 @@ package br.ufscar.dc.dsw;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,6 +26,10 @@ public class InterpretarRequestServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet InterpretarRequestServlet at " + request.getContextPath() + "</h1>");
+
+            /*
+            #Ao utilizar POST, queryString retorna null
+
             String requestURL = request.getRequestURL().toString();
             String protocol = request.getProtocol();
             int port = request.getLocalPort();
@@ -32,6 +39,29 @@ public class InterpretarRequestServlet extends HttpServlet {
             out.println("Porta: " + port + "<br/>");
             out.println("Método: " + metodo + "<br/>");
             out.println("Query: " + queryString + "<br/>");
+            */ 
+            
+            
+            Map<String,String[]> mapaDeParametros = request.getParameterMap();
+            Set<Entry<String,String[]>> conjuntoDeParametros = mapaDeParametros.entrySet();
+            for(Entry<String,String[]> parametro: conjuntoDeParametros) {
+                out.println(parametro.getKey()+":");
+                for(String v: parametro.getValue()) {
+                    out.println("[" + v + "] ");
+                }
+                out.println("<br/>");
+            }
+            
+            /*
+            out.println("O nome é: " + request.getParameter("nome") + "<br/>");
+            boolean receberNoticias = false;
+            String strReceberNoticias = request.getParameter("receber");
+            if(strReceberNoticias != null && strReceberNoticias.equals("ok")) {
+            receberNoticias = true;
+            }
+            out.println("Receber noticias: " + receberNoticias + "<br/>");
+            */
+            
             out.println("</body>");
             out.println("</html>");
         }
