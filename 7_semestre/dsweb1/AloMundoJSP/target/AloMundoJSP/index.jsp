@@ -14,7 +14,7 @@
         <% for(int i=0;i<10;i++) {
             String linha = "Linha "+i;
         %>
-            <%= i %>: <%= linha %> <br/>
+            <%= i %> : <%= linha %> <br/>
         <% } %>
     </body>
 </html>
