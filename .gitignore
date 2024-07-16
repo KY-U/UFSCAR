@@ -1,0 +1,17 @@
+gnorar arquivos compilados
+*.class
+
+# Ignorar logs
+*.log
+
+# Ignorar arquivos temporários do sistema
+Thumbs.db
+
+# Ignorar diretórios de build
+/build/
+/target/
+
+# Ignorar arquivos de configurações de IDEs comuns
+.vscode/
+*.iml
+./idea
