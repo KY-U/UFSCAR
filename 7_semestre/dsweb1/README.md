@@ -11,17 +11,17 @@
 **Adicionar Dependências:**
 ```
 <dependency>
-    <groupId>javax.servlet</groupId>
-    <artifactId>javax.servlet-api</artifactId>
-    <version>4.0.0</version>
-    <scope>provided</scope>
-</dependency>
-<dependency>
-<groupId>javax.servlet.jsp</groupId>
-    <artifactId>jsp-api</artifactId>
-    <version>2.1</version>
-    <scope>provided</scope>
-</dependency>
+     <groupId>javax.servlet</groupId>
+       <artifactId>javax.servlet-api</artifactId>
+       <version>4.0.0</version>
+       <scope>provided</scope>
+   </dependency>
+   <dependency>
+   <groupId>javax.servlet.jsp</groupId>
+       <artifactId>jsp-api</artifactId>
+       <version>2.1</version>
+       <scope>provided</scope>
+   </dependency>
 
    ...
 
