@@ -9,28 +9,28 @@
 - mvn -N io.takari:maven:wrapper
 
 **Adicionar Dependências:**
+
 ```
 <dependency>
-     <groupId>javax.servlet</groupId>
-       <artifactId>javax.servlet-api</artifactId>
-       <version>4.0.0</version>
-       <scope>provided</scope>
-   </dependency>
-   <dependency>
-   <groupId>javax.servlet.jsp</groupId>
-       <artifactId>jsp-api</artifactId>
-       <version>2.1</version>
-       <scope>provided</scope>
-   </dependency>
-
-   ...
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>4.0.0</version>
+    <scope>provided</scope>
+</dependency>
+<dependency>
+    <groupId>javax.servlet.jsp</groupId>
+    <artifactId>jsp-api</artifactId>
+    <version>2.1</version>
+    <scope>provided</scope>
+</dependency>
+...
 
 <plugin>
     <groupId>org.apache.tomcat.maven</groupId>
     <artifactId>tomcat7-maven-plugin</artifactId>
     <version>2.2</version>
     <configuration>
-        <url>http://localhost:8081/manager/text</url>
+        <url>http://localhost:8080/manager/text</url>
         <server>Tomcat9</server>
         <path>/${project.artifactId}</path>
     </configuration>
