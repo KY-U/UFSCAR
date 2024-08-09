@@ -7,8 +7,16 @@
         <title>JSP Page</title>
     </head>
     <body>
-        Bem-vindo <%= request.getParameter("nomeCompleto") %>!
-        <br/>
-        Seu último acesso foi em <%= request.getParameter("ultimoAcesso") %>!
+        <% String voceEstaEm = "AT9 - Sala 197"; %>
+        
+        <%-- Permite que a página incluída acesse variáveis da página que a incluiu --%>
+        <%@include file="cabecalho.jsp" %>
+        
+        Menu de opções:<br/><br/>
+        Conteúdo da página<br/>
+        Conteúdo da página<br/>
+        Conteúdo da página<br/>
+        
+        <jsp:include page="rodape.jsp"/>
     </body>
 </html>
