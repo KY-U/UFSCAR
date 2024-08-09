@@ -23,7 +23,16 @@
     <version>2.1</version>
     <scope>provided</scope>
 </dependency>
+
+<!-- JSTL -->
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>jstl</artifactId>
+    <version>1.2</version>
+    <scope>runtime</scope>
+</dependency>
 ...
+
 
 <plugin>
     <groupId>org.apache.tomcat.maven</groupId>
@@ -34,6 +43,26 @@
         <server>TomcatServer</server>
         <path>/${project.artifactId}</path>
     </configuration>
+</plugin>
+
+<!--Native2Ascii-->
+<plugin>
+	<groupId>org.codehaus.mojo</groupId>
+	<artifactId>native2ascii-maven-plugin</artifactId>
+	<version>1.0-beta-1</version>
+	<executions>
+		<execution>
+			<id>native2ascii-utf8-resources</id>
+			<goals>
+				<goal>native2ascii</goal>
+			</goals>
+			<configuration>
+				<dest>${project.build.directory}/classes</dest>
+				<src>${project.resources[0].directory}</src>
+				<encoding>UTF-8</encoding>
+			</configuration>
+		</execution>
+	</executions>
 </plugin>
 ```
 
