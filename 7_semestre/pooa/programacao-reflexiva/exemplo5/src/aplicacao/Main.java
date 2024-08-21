@@ -8,8 +8,7 @@ public class Main {
  	
        PersistenceFramework framework = new PersistenceFramework();
       
-       //corrigir path absoluto
-       framework.setDBAbsolutePath("/home/caio/github/UFSCAR/7_semestre/pooa/programacao-reflexiva/novoBanco.db");
+       framework.setDBAbsolutePath("jdbc:sqlite:C:\\Users\\arcoc\\github\\UFSCAR\\7_semestre\\pooa\\programacao-reflexiva\\exemplo5\\novoBanco.db");
       
        Cliente cliente = new Cliente(7, "John Doe", "john.doe@example.com");
        try {
