@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class OriginalTest {4
+class OriginalTest {
     @Test
     void verificaMutante1(){
         // Mutante1 altera se for diferente,

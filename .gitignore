@@ -1,6 +1,6 @@
 gnorar arquivos compilados
 *.class
-
+*.war
 # Ignorar logs
 *.log
 
