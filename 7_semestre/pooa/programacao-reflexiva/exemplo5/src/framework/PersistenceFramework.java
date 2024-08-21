@@ -2,6 +2,7 @@ package framework;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -35,6 +36,7 @@ public class PersistenceFramework {
 			
 			//coletando as colunas e valores da query
 			Field[] fields = clazz.getDeclaredFields();
+			Field[] fields2 = clazz.getDeclaredFields();
 			List<String> validFields = new ArrayList<>();
 			List<String> validValues = new ArrayList<>();
 			for (Field field : fields) {
@@ -51,7 +53,10 @@ public class PersistenceFramework {
 			 * String query = "CREATE TABLE IF NOT EXISTS" + table + "(";
 			for(String field: validFields) {
 				query = query + 
-			}*/
+			}
+			*/
+			
+			/*
 			String query = "INSERT INTO" + table + "(";
 			for (int i = 0; i < validValues.size(); i++) {
 				if(i == 0) {
@@ -64,14 +69,24 @@ public class PersistenceFramework {
 			query = query + ")";
 			
 			stmt.executeUpdate(query);
-		}
-		
-		if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }	
+			}
+				 */
+			String query = "INSERT INTO Cliente(id, name, email) VALUES(?, ?, ?)";
+			
+			PreparedStatement statement = conn.prepareStatement(query);
+			statement.setInt(1, (Integer) Integer.parseInt(validValues.get(0)));
+			statement.setString(2, (String) validValues.get(1));
+			statement.setString(3, (String) validValues.get(2));
+			
+			statement.executeUpdate();
+
+			if (conn != null) {
+	            try {
+	                conn.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }	
+			}
 		}
 	}
 }
