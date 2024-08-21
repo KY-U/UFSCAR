@@ -15,15 +15,19 @@ public class PersistenceFramework {
 		}
 
 	public void setDBAbsolutePath(String path){
+
 		try {
+			Class.forName("org.sqlite.JDBC");
 			//private String dbPath;			
 			conn = DriverManager.getConnection(path);
 		}catch (SQLException e) {
             System.out.println("Connection failed.");
             e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
-		
-	}
+
+    }
 	
 	public void insert(Object o) throws SQLException, IllegalArgumentException, IllegalAccessException {
 		Class<?> clazz = o.getClass();
