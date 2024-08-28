@@ -8,8 +8,8 @@ public class Main {
  	
        PersistenceFramework framework = new PersistenceFramework();
       
-       framework.setDBAbsolutePath("jdbc:sqlite:C:\\Users\\arcoc\\github\\UFSCAR\\7_semestre\\pooa\\programacao-reflexiva\\exemplo5\\novoBanco.db");
-      
+       //framework.setDBAbsolutePath("jdbc:sqlite:C:\\Users\\arcoc\\github\\UFSCAR\\7_semestre\\pooa\\programacao-reflexiva\\exemplo5\\novoBanco.db");
+       framework.setDBAbsolutePath("jdbc:sqlite:/home/caio/Downloads/novoBanco.db");
        Cliente cliente = new Cliente(7, "John Doe", "john.doe@example.com");
        try {
 
